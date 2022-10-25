@@ -15,9 +15,7 @@ COPY . /app
 ENV ENV=dev
 
 # Install pip requirements
-COPY requirements.txt .
 RUN apt-get -y update
 RUN apt-get -y install git
-RUN python -m pip install -r requirements.txt
 
 CMD exec gunicorn --bind :$PORT  --workers 1 --threads 8 --timeout 0 main:app
